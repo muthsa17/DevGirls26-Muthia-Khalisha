@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Tracker</title>
+
+    <!--Bootsrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!--Bootstrap Icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css" integrity="sha512-t7Few9xlddEmgd3oKZQahkNI4dS6l80+eGEzFQiqtyVYdvcSG2D3Iub77R20BdotfRPA9caaRkg1tyaJiPmO0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--Custom CSS-->
+    <link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar bg-body-tertiary"> 
+        <div class="container d-flex justify-content-between">
+            <a class="navbar-brand" href="#">Study Tracker</a>
+            <div class ="d-flex gap-2 align-items-center">
+                <span id="DDate" class ="text-secondary"></span>
+                <button id="themeToggle" class="theme-toggle" title="Toggle Dark Mode">
+                    <span class="bi bi-moon-fill" id="toggleIcon"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <!-- MAIN CONTENT -->
+    <div class="container mt-4">
+        <!-- ── RINGKASAN PRODUKTIVITAS ── -->
+        <div class="summary-grid">
+            <div class="stat-card card">
+                <div class="text-secondary bi bi-list-task"> Total Tugas</div>
+                <div class="fw-bolder text-primary" id="statTotal">0</div>
+                </div>
+            <div class="stat-card card">
+                <div class="text-secondary bi bi-check2-circle"> Selesai</div>
+                <div class="fw-bolder text-success" id="statDone">0</div>
+                </div>
+            <div class="stat-card card">
+                <div class="text-secondary bi bi-hourglass-split"> Belum</div>
+                <div class="fw-bolder text-warning" id="statPending">0</div>
+            </div>
+        </div>  
+        <!-- ── PROGRESS BAR ── -->
+        <div class="progress-wrap card">
+            <div class="progress-label text-secondary">
+                <span>Produktivitas Hari Ini</span>
+                <span id="progressPct">0%</span>
+            </div>
+            <div class="progress" style="height:10px; border-radius:99px;">
+                <div class="progress-bar bg-success" id="progressBar"></div>
+            </div>
+        </div>
+        <!-- ── FORM INPUT TUGAS ── -->
+        <div class="panel card">
+            <div class="panel-title fw-bold bi bi-plus-circle-fill text-primary"> Tambah Tugas Baru</div>
+            <div class="row g-2">
+                <div class="col-12 col-md-6">
+                    <label class="form-label text-secondary">Nama Tugas</label>
+                    <input type="text" id="taskName" class="form-control" placeholder="Contoh: Project Akhir ABD pt1" />
+                </div>
+                <div class="col-12 col-md-6">
+                    <label class="form-label text-secondary">Kategori</label>
+                    <select id="taskCategory" class="form-select">
+                        <option value="Umum">📚 Umum</option>
+                        <option value="Kuliah">🎓 Kuliah</option>
+                        <option value="Tugas">📝 Tugas</option>
+                        <option value="Ujian">📊 Ujian</option>
+                        <option value="Praktikum">🔬 Praktikum</option>
+                        <option value="Organisasi">🤝 Organisasi</option>
+                        <option value="Lainnya">✨ Lainnya</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <label class="form-label text-secondary">Deskripsi</label>
+                    <input type="text" id="taskDesc" class="form-control" placeholder="Detail singkat tentang tugas ini..." />
+                </div>
+                <div class="col-12 col-sm-6 col-md-4">
+                    <label class="form-label text-secondary">Deadline</label>
+                    <input type="date" id="taskDeadline" class="form-control" />
+                </div>
+                <div class="col-12 col-sm-6 col-md-8 d-flex align-items-end">
+                    <button class="btn btn-primary w-100" onclick="addTask()">
+                    <span class="bi bi-plus-lg me-1">Tambah Tugas</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- ── FILTER & PENCARIAN ── -->
+        <div class="filter-bar">
+            <button class="filter-btn btn btn-primary btn-sm" onclick="setFilter('all', this)">Semua</button>
+            <button class="filter-btn btn btn-outline-secondary btn-sm" onclick="setFilter('pending', this)">Belum Selesai</button>
+            <button class="filter-btn btn btn-outline-secondary btn-sm" onclick="setFilter('done', this)">Selesai</button>
+            <div class="search-wrap">
+                <span class="bi bi-search"></span>
+                <input type="text" class="form-control form-control-sm" id="searchInput" placeholder="Cari tugas..." />
+            </div>
+        </div>
+
+        <!-- ── DAFTAR TUGAS ── -->
+        <div class="section-title">
+            <i class="bi bi-journal-check text-primary"></i> Daftar Tugas
+            <span class="badge text-bg-primary rounded-pill" id="taskCountBadge">0</span>
+        </div>
+        <div class="task-list" id="taskList"></div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom Script -->
+    <script src="app.js"></script>
+</body>
+    </html>
