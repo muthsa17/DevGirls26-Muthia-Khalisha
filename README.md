@@ -39,8 +39,8 @@ Cukup buka file `index.html` langsung di browser (double-click), atau gunakan ek
 ## 📸 Screenshot
 
 ### 🌤️ Light Mode
-![Light Mode](ScreenShot/LighMode_1.png)
-![Light Mode](ScreenShot/LighMode_2.png)
+![Light Mode](ScreenShot/LightMode_1.png)
+![Light Mode](ScreenShot/LightMode_2.png)
 
 ### 🌙 Dark Mode
 ![Light Mode](ScreenShot/DarkMode.png)
